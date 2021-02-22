@@ -30,7 +30,10 @@ permalink: common/troubleshooting/
 
 #### How come my workstation isn't chaining to FCPCA G2?
 
-TBD
+1. Verify you have distributed the Federal Common Policy CA G2 as a [Trusted Root CA Certificate]({{site.baseurl}}/common/distribute-os/)
+2. 
+
+
 
 #### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
 
