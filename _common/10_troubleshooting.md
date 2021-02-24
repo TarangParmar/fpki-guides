@@ -45,12 +45,12 @@ If you're still having problems, reach out to us at fpkirootupdate@gsa.gov.
 
 #### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
 
-It's possbile the web application you are attempting to authenticate to has not yet distributed the Federal Common Policy CA G2 certificate, or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
+It's possbile the application or website you are attempting to authenticate to has not yet distributed the Federal Common Policy CA G2 certificate, or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
 
 The steps below should **only** be performed by System Administrators and require [OpenSSL](https://www.openssl.org/){:target="_blank"}{:rel="noopener noreferrer"}.
 
 **Recommended Steps**:
-1. Run the following OpenSSL command, replacing the website's fully qualified domain name (FQDN) with the placeholder below:<br>
+1. Run the following OpenSSL command, replacing the application or website's fully qualified domain name (FQDN) with the placeholder below:<br>
 ```openssl s_client -connect [FQDN].gov:443```
 
      For example, to test https://piv.treasury.gov, you would execute:<br>
