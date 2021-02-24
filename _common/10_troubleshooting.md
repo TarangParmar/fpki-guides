@@ -50,7 +50,7 @@ It's possbile the application or website you are attempting to authenticate to h
 The steps below should **only** be performed by System Administrators and require [OpenSSL](https://www.openssl.org/){:target="_blank"}{:rel="noopener noreferrer"}.
 
 **Recommended Steps**:
-1. Run the following OpenSSL command, replacing the application or website's fully qualified domain name (FQDN) with the placeholder below:<br>
+1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN):<br>
 ```openssl s_client -connect [FQDN].gov:443```
 
      For example, to test https://piv.treasury.gov, you would execute:<br>
@@ -67,7 +67,31 @@ The steps below should **only** be performed by System Administrators and requir
 
 #### How can I verify network configurations aren't preventing certificate validation?
 
-TBD
+Certificates contain extensions that tell us more information about their intended use, status, the CA that issued them, and more.  When certificates are being validated, two particular extensions are very important.
+
+- Authority Information Access (AIA)
+- Certificate Revocation List (CRL) Distribution Point (DP)
+
+These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our operating systems will use support certificate path discovery and validation.  If local network configurations are configured to block access to these HTTP pointers, validation may fail.  Use the following steps to confirm network configurations are not preventing access to these important extension pointers.
+
+**Recommended Steps:**
+1. Export the certificate you'd like to analyze to a known location on your file system (e.g., C:\Test\PIV-Authentication.cer)
+
+2. Start -> Run -> cmd.exe
+
+3. Run the following command, to open the CertUtil Graphical User Interface:<br>
+```certutil -URL "http://```
+
+4. Click "Select" and browse the the file location of the certificate you'd like to analyze.
+
+5. Select the "Certs (from AIA)" radio button and click "Retrieve."  Verify at least one entry returns a status of "Verified".
+
+6. Select the "CRLs (from CDP)" radio button and click "Retrieve."  Verify at least one entry returns a status of "Verified".
+
+7. Optional: If the certificate contains an Online Certificate Status Protocol pointer within the AIA extension, select the "OCSP (from AIA)" radio button and click "Retrieve." verify at least one entry returns a status of "Verified."   
+
+**Note:** If any of the above tests fail to present a status of "Verified" work with your network teams to identify if a firewall is blocking traffic.
+
 
 #### Is there any logging I can enable to help verify what's going on?
 
