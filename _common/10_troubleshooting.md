@@ -30,8 +30,16 @@ permalink: common/troubleshooting/
 
 #### How come my workstation isn't chaining to FCPCA G2?
 
-1. Verify you have distributed the Federal Common Policy CA G2 as a [Trusted Root CA Certificate]({{site.baseurl}}/common/distribute-os/)
-2. 
+In some cases, even after distributing the Federal Common Policy CA G2 as a Trusted Root CA, Microsoft-based systems may still attempt to build a path to the Federal Common Policy CA.  In the event that the Federal Common Policy CA has been distrusted, that may result in errors as pictured below:
+
+![validation errors]({{site.baseurl}}/img/error-distribute-intermediates.png) 
+
+**Recommended Steps:**
+1. Verify the distribution of the Federal Common Policy CA G2 as a [Trusted Root CA Certificate]({{site.baseurl}}/common/distribute-os/)
+2. Verify the [distrust of the Federal Common Policy CA]({{site.baseurl}}/common/migrate/#distrust-the-fcpca-g1)
+3. Distribute the [intermediate CA certificates issued by the Federal Common Policy CA G2]({{site.baseurl}}/common/certificates/#certificates-issued-by-the-federal-common-policy-ca-g2)
+
+If you're still having problems, reach out to us at fpkirootupdate@gsa.gov.
 
 
 
