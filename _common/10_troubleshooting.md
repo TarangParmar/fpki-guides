@@ -98,9 +98,9 @@ These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our op
 
 6. Select the "CRLs (from CDP)" radio button and click "Retrieve."  Verify at least one entry returns a status of "Verified".
 
-7. Optional: If the certificate contains an Online Certificate Status Protocol pointer within the AIA extension, select the "OCSP (from AIA)" radio button and click "Retrieve." verify at least one entry returns a status of "Verified."   
+7. Optional: If the certificate contains an Online Certificate Status Protocol pointer within the AIA extension, select the "OCSP (from AIA)" radio button and click "Retrieve." Verify at least one entry returns a status of "Verified."   
 
-**Note:** Work with your network teams to identify if a firewall configuration is blocking traffic for any tests above that do not return a status of "Verified."
+**Note:** Work with your network teams to identify if a firewall configuration is blocking traffic for any tests above that do not return a status of "Verified.  Be sure to analyze each certificate on the chain, all the way to the Federal Common Policy CA G2."
 
 
 
@@ -132,6 +132,7 @@ The following Certutil commands may be helpful during troubleshooting:
           certutil -urlcache * delete
      ```
 
+**Note:** Carefully review any failures presented by the output of the commands above.
 
 <br><br>
 
@@ -140,7 +141,7 @@ The following Certutil commands may be helpful during troubleshooting:
 
 #### How come my workstation isn't chaining to FCPCA G2?
 
-The most common cause of path building errors on macOS is because the full certificate chain is not trusted.  Review "_Are there any useful commands that I should be familiar with?_" below to learn how to detect certificate trust issues. 
+The most common cause of path building errors on macOS is due to the full certificate chain not being trusted.  Review "_Are there any useful commands that I should be familiar with?_" below to learn how to detect certificate trust issues. 
 
 #### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
 
