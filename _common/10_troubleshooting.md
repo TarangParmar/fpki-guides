@@ -62,6 +62,8 @@ The steps below should **only** be performed by System Administrators and requir
 
 **Note:** the presence of the names of intermediate CA certificates issued from the Federal Common Policy CA G2 in the list of "Acceptable client certificate CA names" does not guarantee the right certificates have been added.  You may need to work with the website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added. 
 
+
+
 #### How can I verify network configurations aren't preventing certificate validation?
 
 Certificates contain extensions that tell us more information about their intended use, status, the CA that issued them, and more.  When certificates are being validated, two particular extensions are very important.
@@ -89,6 +91,7 @@ These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our op
 **Note:** Work with your network teams to identify if a firewall configuration is blocking traffic for any tests above that do not return a status of "Verified."
 
 
+
 #### Is there any logging I can enable to help verify what's going on?
 
 Microsoft systems include a PKI troubleshooting diagnostic tool availabe through the Event Viewer. This feature provides administrators with an ability to troubleshoot PKI problems by collecting detailed information about certificate validation, trust store operations, and signature verification. Follow the steps below to enable Microsoft the diagnostic tool.
@@ -100,11 +103,18 @@ Microsoft systems include a PKI troubleshooting diagnostic tool availabe through
 
 3. Right-click on "Operational" and select “Enable Log”. This will enable CAPI2 Diagnostics logging.
 
-Note: Review failures presented in the log to learn more about specific reason certificate validation is not successful.  It may be useful to filter the log based on "Level" (Error or Information) or Event ID. Event IDs 10 and 11 are associated with certificate chain building. Event IDs 40 and 41 are associated with certificate revocation. 
+**Note:** Review failures presented in the log to learn more about specific reason certificate validation is not successful.  It may be useful to filter the log based on "Level" (Error or Information) or Event ID. Event IDs 10 and 11 are associated with certificate chain building. Event IDs 40 and 41 are associated with certificate revocation. 
 
 #### Are there any useful commands that I should be familiar with?
 
-TBD
+Certutil.exe is a command line program that is installed on Microsoft systems. You can use Certutil to display certificate status, validate certificate chains, and more.  
+
+The following Certutil commands may be helpful during troubleshooting certificate issues:
+- To verify a certificate and attempt to retrieve and verify AIA buncles and CRLs: ```certutil -verify -urlfetch [PATH-TO-CERTIFICATE]``` 
+- To clear the machine's certificate and certificate URL entry cache: ```certutil -urlcache * delete```
+
+
+
 
 
 ### macOS
@@ -120,16 +130,13 @@ It's possible the application or website you are attempting to authenticate to h
 The steps below should **only** be performed by System Administrators and require [OpenSSL](https://www.openssl.org/){:target="_blank"}{:rel="noopener noreferrer"}.
 
 **Recommended Steps**:
-1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN):<br><br>
-```openssl s_client -connect [FQDN].gov:443```
+1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN): ```openssl s_client -connect [FQDN].gov:443```
 
-     For example, to test https://piv.treasury.gov, you would execute:<br><br>
-     ```openssl s_client -connect piv.treasury.gov:443```
+     For example, to test https://piv.treasury.gov, you would execute: ```openssl s_client -connect piv.treasury.gov:443```
      
 2. Review the output for a line that reads "Acceptable client certificate CA names."  This presents a listing of the certificates the website is willing to accept a certificate from for authentication. 
 
-3. Verify an entry exists for the Federal Common Policy CA G2.  This will appear as the following:<br><br>
-     ```/C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2```
+3. Verify an entry exists for the Federal Common Policy CA G2.  This will appear as the following: ```/C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2```
      
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
@@ -141,8 +148,14 @@ TBD
 
 #### Are there any useful commands that I should be familiar with?
 
-security verify-cert -c [PATH] -v
+The macOS ```verify-cert``` command is useful for detecting issues with certificates.
 
+**Recommended Steps**:
+1. Click the Spotlight icon and search for Terminal.
+2. Double-click the Terminal icon (black monitor icon with white “>_”) to open a window.
+3. Run the following command: ```security verify-cert -c [PATH-TO-CERTIFICATE] -v```
+
+Note: 
 
 ### iOS
 
