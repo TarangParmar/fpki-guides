@@ -17,7 +17,6 @@ permalink: common/troubleshooting/
 ## macOS Troubleshooting
 - [How come my workstation isn't chaining to FCPCA G2?](#how-come-my-workstation-isnt-chaining-to-fcpca-g2)
 - [How come I can't login to an application or website with my PIV after migrating to FCPCA G2?](#how-come-i-cant-login-to-an-application-or-website-with-my-piv-after-migrating-to-fcpca-g2)
-- [How can I verify network configurations aren't preventing certificate validation?](#how-can-i-verify-network-configurations-arent-preventing-certificate-validation)
 - [Are there any useful commands that I should be familiar with?](#are-there-any-useful-commands-that-i-should-be-familiar-with)
 
 ## iOS Troubleshooting
@@ -70,7 +69,7 @@ The steps below should **only** be performed by System Administrators and requir
      <br>
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
-**Note:** the presence of the names of intermediate CA certificates issued from the Federal Common Policy CA G2 in the list of "Acceptable client certificate CA names" does not guarantee the right certificates have been added.  You may need to work with the website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added. 
+**Note:** the presence of the name of an intermediate CA certificate issued from the Federal Common Policy CA G2 in the list of "Acceptable client certificate CA names" does not guarantee the right certificate has been added to the application or website's trust store.  You may need to work with the application or website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added to the trust store. 
 
 
 
@@ -88,12 +87,12 @@ These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our op
 
 2. Start -> Run -> cmd.exe
 
-3. Run the following command to open the CertUtil Graphical User Interface:<br><br>
+3. Run the following command to open the Certutil Graphical User Interface:<br><br>
      ```
           certutil -URL "http://"
      ```
      <br>
-4. Click "Select" and browse the file location of the certificate you'd like to analyze.
+4. Click "Select" and browse to the file location of the certificate you'd like to analyze.
 
 5. Select the "Certs (from AIA)" radio button and click "Retrieve."  Verify at least one entry returns a status of "Verified".
 
@@ -107,7 +106,7 @@ These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our op
 
 #### Is there any logging I can enable to help verify what's going on?
 
-Microsoft systems include a PKI troubleshooting diagnostic tool availabe through the Event Viewer. This feature provides administrators with an ability to troubleshoot PKI problems by collecting detailed information about certificate validation, trust store operations, and signature verification. Follow the steps below to enable Microsoft the diagnostic tool.
+Microsoft systems include a PKI troubleshooting diagnostic tool availabe through the Event Viewer. This feature provides administrators with an ability to troubleshoot PKI problems by collecting detailed information about certificate validation, trust store operations, and signature verification. Follow the steps below to enable the Microsoft diagnostic tool.
 
 **Recommended Steps:**
 1. Start -> Run -> eventvwr.msc
@@ -116,18 +115,19 @@ Microsoft systems include a PKI troubleshooting diagnostic tool availabe through
 
 3. Right-click on "Operational" and select “Enable Log”. This will enable CAPI2 Diagnostics logging.
 
-**Note:** Review failures presented in the log to learn more about specific reason certificate validation is not successful.  It may be useful to filter the log based on "Level" (Error or Information) or Event ID. Event IDs 10 and 11 are associated with certificate chain building. Event IDs 40 and 41 are associated with certificate revocation checking. 
+**Note:** Review the detailed logs for failures presented in the diagnostic tool to learn why certificate validation is not succesful.  It may be useful to filter the log based on "Level" (Error or Information) or Event ID. Event IDs 10 and 11 are associated with certificate chain building. Event IDs 40 and 41 are associated with certificate revocation checking. 
 
 #### Are there any useful commands that I should be familiar with?
 
 Certutil.exe is a command line program that is installed on Microsoft systems. You can use Certutil to display certificate status, validate certificate chains, and more.  
 
-The following Certutil commands may be helpful during troubleshooting certificate issues:
-- To verify a certificate and attempt to retrieve and verify AIA buncles and CRLs:<br><br>
+The following Certutil commands may be helpful during troubleshooting:
+- To verify a certificate and attempt to retrieve and verify AIA and CRLDP URIs:<br><br>
      ```
           certutil -verify -urlfetch [PATH-TO-CERTIFICATE]
      ``` 
-- To clear the machine's certificate and certificate URL entry cache:<br><br>
+     <br>
+- To clear the machine's certificate and certificate URL cache:<br><br>
      ```
           certutil -urlcache * delete
      ```
@@ -140,9 +140,10 @@ The following Certutil commands may be helpful during troubleshooting certificat
 
 #### How come my workstation isn't chaining to FCPCA G2?
 
-The most common cause of path building errors on macOS is because the full certificate chain is not distributed to a KeyChain (typically, the Login or System KeyChains).  Review "Are there any useful commands that I should be familiar with?", below, for how to detect certificate trust issues. 
+The most common cause of path building errors on macOS is because the full certificate chain is not trusted.  Review "_Are there any useful commands that I should be familiar with?_", below, to learn how to detect certificate trust issues. 
 
 #### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
+
 
 It's possible the application or website you are attempting to authenticate to has not yet distributed the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
 
@@ -169,11 +170,8 @@ The steps below should **only** be performed by System Administrators and requir
      <br>
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
-**Note:** the presence of the names of intermediate CA certificates issued from the Federal Common Policy CA G2 in the list of "Acceptable client certificate CA names" does not guarantee the right certificates have been added.  You may need to work with the website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added. 
+**Note:** the presence of the name of an intermediate CA certificate issued from the Federal Common Policy CA G2 in the list of "Acceptable client certificate CA names" does not guarantee the right certificate has been added to the application or website's trust store.  You may need to work with the application or website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added to the trust store. 
 
-#### How can I verify network configurations aren't preventing certificate validation?
-
-TBD
 
 #### Are there any useful commands that I should be familiar with?
 
@@ -195,7 +193,7 @@ Note: Any issues detected during certificate validation will be presented in the
 
 #### Why am I seeing TLS certificate errors?
 
-Even after distributing the Federal Common Policy CA G2 as a Trusted Root Certificate to an iOS device, it may still present TLS negotiation failures when navigating to a website whose TLS certificate was issued by a Federal PKI CA.
+Even after distributing the Federal Common Policy CA G2 as a Trusted Root Certificate to an iOS device, TLS negotiation failures may appear when navigating to a website whose TLS certificate was issued by a Federal PKI CA.
 
 TLS certificate errors presented to the user in Safari are typically caused by either:
 1. "Full Trust" for the Federal Common Policy CA G2 is not enabled
@@ -205,5 +203,6 @@ TLS certificate errors presented to the user in Safari are typically caused by e
 1. Verify that ["Full Trust"](({{site.baseurl}}/common/distribute-os/#enable-full-trust-for-fcpca-g2)){:target="_blank_"} is enabled for the Federal Common Policy CA G2
 2. Verify that all required intermediate CA certificates are trusted by the device
      - Settings -> General -> Profile
-     - Review the list of Configuration Profiles loaded on the device. Specifically, look at any profile which contains digital certificates. Verify the device explicitly trusts all CA certificates on the chain between the website's TLS certificate and the Federal Common Policy CA G2. 
+     - Review the list of Configuration Profiles loaded on the device. Specifically, look at any profile which contains digital certificates. 
+     - Verify the device explicitly trusts all CA certificates on the chain between the website's TLS certificate and the Federal Common Policy CA G2. 
 
