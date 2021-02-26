@@ -50,7 +50,7 @@ It's possible the application or website you are attempting to authenticate to h
 The steps below should **only** be performed by System Administrators and require [OpenSSL](https://www.openssl.org/){:target="_blank"}{:rel="noopener noreferrer"}.
 
 **Recommended Steps**:
-1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN):<br>
+1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN):
      ```
           openssl s_client -connect [FQDN].gov:443
      ```
