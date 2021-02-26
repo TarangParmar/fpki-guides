@@ -1,11 +1,11 @@
 ---
 layout: default 
-title: Troubleshooting
+title: Troubleshooting Procedures
 collection: common
 permalink: common/troubleshooting/
 ---
 
-{% include alert-success.html content="Common issues and troubleshooting solutions related to the Federal PKI Root CA migration are listed below.  If you need help or have any questions, email us at fpkirootupdate@gsa.gov for help." %} 
+{% include alert-success.html content="Common issues and troubleshooting procedures related to the Federal PKI Root CA migration are listed below.  If you need help or have any questions, email us at fpkirootupdate@gsa.gov for help." %} 
  
 ## Windows Troubleshooting
 - [How come my workstation isn't chaining to FCPCA G2?](#how-come-my-workstation-isnt-chaining-to-fcpca-g2)
@@ -35,9 +35,9 @@ In some cases, even after distributing the Federal Common Policy CA G2 as a Trus
 ![validation errors]({{site.baseurl}}/img/error-distribute-intermediates.png) 
 
 **Recommended Steps:**
-1. Verify the distribution of the Federal Common Policy CA G2 as a [Trusted Root CA Certificate]({{site.baseurl}}/common/distribute-os/)
-2. Verify the [distrust of the Federal Common Policy CA]({{site.baseurl}}/common/migrate/#distrust-the-fcpca-g1)
-3. Distribute the [intermediate CA certificates issued by the Federal Common Policy CA G2]({{site.baseurl}}/common/certificates/#certificates-issued-by-the-federal-common-policy-ca-g2)
+1. Verify the distribution of the Federal Common Policy CA G2 as a [Trusted Root CA Certificate]({{site.baseurl}}/common/distribute-os/){:target="_blank"}
+2. Verify the [distrust of the Federal Common Policy CA]({{site.baseurl}}/common/migrate/#distrust-the-fcpca-g1){:target="_blank"}
+3. Distribute the [intermediate CA certificates issued by the Federal Common Policy CA G2]({{site.baseurl}}/common/certificates/#certificates-issued-by-the-federal-common-policy-ca-g2){:target="_blank"}
 
 If you're still having problems, reach out to us at fpkirootupdate@gsa.gov.
 
@@ -84,7 +84,7 @@ Certificates contain extensions that tell us more information about their intend
 These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our operating systems will use to support certificate path discovery and validation.  If local network configurations are configured to block access to these HTTP pointers, validation may fail.  Use the following steps to confirm network configurations are not preventing access to these important extension pointers.
 
 **Recommended Steps:**
-1. Export the certificate you'd like to analyze to a known location on your file system (e.g., C:\Test\PIV-Authentication.cer)
+1. Export the certificate you'd like to analyze to a known location on your file system.
 
 2. Start -> Run -> cmd.exe
 
@@ -116,7 +116,7 @@ Microsoft systems include a PKI troubleshooting diagnostic tool availabe through
 
 3. Right-click on "Operational" and select “Enable Log”. This will enable CAPI2 Diagnostics logging.
 
-**Note:** Review failures presented in the log to learn more about specific reason certificate validation is not successful.  It may be useful to filter the log based on "Level" (Error or Information) or Event ID. Event IDs 10 and 11 are associated with certificate chain building. Event IDs 40 and 41 are associated with certificate revocation. 
+**Note:** Review failures presented in the log to learn more about specific reason certificate validation is not successful.  It may be useful to filter the log based on "Level" (Error or Information) or Event ID. Event IDs 10 and 11 are associated with certificate chain building. Event IDs 40 and 41 are associated with certificate revocation checking. 
 
 #### Are there any useful commands that I should be familiar with?
 
@@ -195,5 +195,15 @@ Note: Any issues detected during certificate validation will be presented in the
 
 #### Why am I seeing TLS certificate errors?
 
+Even after distributing the Federal Common Policy CA G2 as a Trusted Root Certificate to an iOS device, it may still present TLS negotiation failures when navigating to a website whose TLS certificate was issued by a Federal PKI CA.
+
+TLS certificate errors presented to the user in Safari are typically caused by either:
+1. "Full Trust" for the Federal Common Policy CA G2 is not enabled
+2. An intermediate CA certificate is missing from the device's trust store
+
 **Recommended Steps**:
+1. Verify that ["Full Trust"](({{site.baseurl}}/common/distribute-os/#enable-full-trust-for-fcpca-g2)){:target="_blank_"} is enabled for the Federal Common Policy CA G2
+2. Verify that all required intermediate CA certificates are trusted by the device
+     - Settings -> General -> Profile
+     - Review the list of Configuration Profiles loaded on the device. Specifically, look at any profile which contains digital certificates. Verify the device explicitly trusts all CA certificates on the chain between the website's TLS certificate and the Federal Common Policy CA G2. 
 
