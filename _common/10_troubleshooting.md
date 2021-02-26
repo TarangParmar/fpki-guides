@@ -9,14 +9,14 @@ permalink: common/troubleshooting/
  
 ## Windows Troubleshooting
 - [How come my workstation isn't chaining to FCPCA G2?](#how-come-my-workstation-isnt-chaining-to-fcpca-g2)
-- [How come I can't log in to an application or website with my PIV after migrating to FCPCA G2?](#how-come-i-cant-log-in-to-an-application-or-website-with-my-piv-after-migrating-to-fcpca-g2)
+- [How come I can't login to an application or website with my PIV after migrating to FCPCA G2?](#how-come-i-cant-login-to-an-application-or-website-with-my-piv-after-migrating-to-fcpca-g2)
 - [How can I verify network configurations aren't preventing certificate validation?](#how-can-i-verify-network-configurations-arent-preventing-certificate-validation)
 - [Is there any logging I can enable to help verify what's going on?](#is-there-any-logging-i-can-enable-to-help-verify-whats-going-on)
 - [Are there any useful commands that I should be familiar with?](#are-there-any-useful-commands-that-i-should-be-familiar-with)
 
 ## macOS Troubleshooting
 - [How come my workstation isn't chaining to FCPCA G2?](#how-come-my-workstation-isnt-chaining-to-fcpca-g2)
-- [How come I can't log in to an application or website with my PIV after migrating to FCPCA G2?](#how-come-i-cant-log-in-to-an-application-or-website-with-my-piv-after-migrating-to-fcpca-g2)
+- [How come I can't login to an application or website with my PIV after migrating to FCPCA G2?](#how-come-i-cant-login-to-an-application-or-website-with-my-piv-after-migrating-to-fcpca-g2)
 - [Are there any useful commands that I should be familiar with?](#are-there-any-useful-commands-that-i-should-be-familiar-with)
 
 ## iOS Troubleshooting
@@ -42,7 +42,7 @@ If you're still having problems, reach out to us at fpkirootupdate@gsa.gov.
 
 
 
-#### How come I can't log in to an application or website with my PIV after migrating to FCPCA G2?
+#### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
 
 It's possible the application or website you are attempting to authenticate to has not yet distributed the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
 
@@ -142,7 +142,7 @@ The following Certutil commands may be helpful during troubleshooting:
 
 The most common cause of path building errors on macOS is because the full certificate chain is not trusted.  Review "_Are there any useful commands that I should be familiar with?_" below to learn how to detect certificate trust issues. 
 
-#### How come I can't log in to an application or website with my PIV after migrating to FCPCA G2?
+#### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
 
 It's possible the application or website you are attempting to authenticate to has not yet distributed the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
 
