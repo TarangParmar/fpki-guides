@@ -52,11 +52,17 @@ The steps below should **only** be performed by System Administrators and requir
 **Recommended Steps**:
 1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN):<br><br> ```openssl s_client -connect [FQDN].gov:443```
 
-     For example, to test https://piv.treasury.gov, you would execute:<br><br> ```openssl s_client -connect piv.treasury.gov:443```
+     For example, to test https://piv.treasury.gov, you would execute:<br><br> 
+     ```
+          openssl s_client -connect piv.treasury.gov:443
+     ```
      
 2. Review the output for a line that reads "Acceptable client certificate CA names."  This presents a listing of the certificates the website is willing to accept a certificate from for authentication. 
 
-3. Verify an entry exists for the Federal Common Policy CA G2.  This will appear as the following:<br><br> ```/C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2```
+3. Verify an entry exists for the Federal Common Policy CA G2.  This will appear as the following:<br><br> 
+     ```
+          /C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2
+     ```
      
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
@@ -66,7 +72,7 @@ The steps below should **only** be performed by System Administrators and requir
 
 #### How can I verify network configurations aren't preventing certificate validation?
 
-Certificates contain extensions that tell us more information about their intended use, status, the CA that issued them, and more.  When certificates are being validated, two particular extensions are very important.
+Certificates contain extensions that tell us more information about their intended use, status, the CA that issued them, and more.  When certificates are being validated, two particular extensions are very important:
 
 - Authority Information Access (AIA)
 - Certificate Revocation List (CRL) Distribution Point (DP)
@@ -78,7 +84,10 @@ These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our op
 
 2. Start -> Run -> cmd.exe
 
-3. Run the following command to open the CertUtil Graphical User Interface:<br><br>  ```certutil -URL "http://"```
+3. Run the following command to open the CertUtil Graphical User Interface:<br><br>
+     ```
+          certutil -URL "http://"
+     ```
 
 4. Click "Select" and browse the file location of the certificate you'd like to analyze.
 
@@ -110,11 +119,17 @@ Microsoft systems include a PKI troubleshooting diagnostic tool availabe through
 Certutil.exe is a command line program that is installed on Microsoft systems. You can use Certutil to display certificate status, validate certificate chains, and more.  
 
 The following Certutil commands may be helpful during troubleshooting certificate issues:
-- To verify a certificate and attempt to retrieve and verify AIA buncles and CRLs:<br><br> ```certutil -verify -urlfetch [PATH-TO-CERTIFICATE]``` 
-- To clear the machine's certificate and certificate URL entry cache:<br><br> ```certutil -urlcache * delete```
+- To verify a certificate and attempt to retrieve and verify AIA buncles and CRLs:<br><br>
+     ```
+          certutil -verify -urlfetch [PATH-TO-CERTIFICATE]
+     ``` 
+- To clear the machine's certificate and certificate URL entry cache:<br><br>
+     ```
+          certutil -urlcache * delete
+     ```
 
 
-
+<br><br>
 
 
 ### macOS
@@ -132,11 +147,17 @@ The steps below should **only** be performed by System Administrators and requir
 **Recommended Steps**:
 1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN):<br><br> ```openssl s_client -connect [FQDN].gov:443```
 
-     For example, to test https://piv.treasury.gov, you would execute:<br><br> ```openssl s_client -connect piv.treasury.gov:443```
+     For example, to test https://piv.treasury.gov, you would execute:<br><br> 
+     ```
+          openssl s_client -connect piv.treasury.gov:443
+     ```
      
 2. Review the output for a line that reads "Acceptable client certificate CA names."  This presents a listing of the certificates the website is willing to accept a certificate from for authentication. 
 
-3. Verify an entry exists for the Federal Common Policy CA G2.  This will appear as the following:<br><br> ```/C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2```
+3. Verify an entry exists for the Federal Common Policy CA G2.  This will appear as the following:<br><br> 
+     ```
+          /C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2
+     ```
      
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
@@ -153,13 +174,18 @@ The macOS ```verify-cert``` command is useful for detecting issues with certific
 **Recommended Steps**:
 1. Click the Spotlight icon and search for Terminal.
 2. Double-click the Terminal icon (black monitor icon with white “>_”) to open a window.
-3. Run the following command:<br><br> ```security verify-cert -c [PATH-TO-CERTIFICATE] -v```
+3. Run the following command:<br><br>
+     ```
+          security verify-cert -c [PATH-TO-CERTIFICATE] -v
+     ```
 
-Note: 
+Note: Any issues detected during certificate validation will be presented in the command's output.
+
+<br><br>
 
 ### iOS
 
 #### Why am I seeing TLS certificate errors?
 
-TBD
+**Recommended Steps**:
 
