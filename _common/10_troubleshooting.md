@@ -5,7 +5,7 @@ collection: common
 permalink: common/troubleshooting/
 ---
 
-{% include alert-success.html content="Common issues and troubleshooting procedures related to the Federal PKI Root CA migration are listed below.  If you need help or have any questions, email us at fpkirootupdate@gsa.gov." %} 
+{% include alert-success.html content="This page presents common issues and troubleshooting procedures related to the Federal PKI Root CA migration are listed below.  We encourage <b>only</b> Domain or System Administrators follow the procedures listed on this page.  If you need help or have any questions, email us at fpkirootupdate@gsa.gov." %} 
  
 ## Windows Troubleshooting
 - [How come my workstation isn't chaining to FCPCA G2?](#how-come-my-workstation-isnt-chaining-to-fcpca-g2)
@@ -100,7 +100,7 @@ These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our op
 
 7. Optional: If the certificate contains an Online Certificate Status Protocol pointer within the AIA extension, select the "OCSP (from AIA)" radio button and click "Retrieve." Verify at least one entry returns a status of "Verified."   
 
-**Note:** Work with your network teams to identify if a firewall configuration is blocking traffic for any tests above that do not return a status of "Verified.  Be sure to analyze each certificate on the chain, all the way to the Federal Common Policy CA G2."
+**Note:** Work with your network teams to identify if a firewall configuration is blocking traffic for any tests above that do not return a status of "Verified."  Be sure to analyze each certificate on the chain, all the way to the Federal Common Policy CA G2.
 
 
 
@@ -115,7 +115,7 @@ Microsoft systems include a PKI troubleshooting diagnostic tool availabe through
 
 3. Right-click on "Operational" and select “Enable Log”. This will enable CAPI2 Diagnostics logging.
 
-**Note:** Review the detailed logs for failures presented in the diagnostic tool to learn why certificate validation is not successful.  It may be useful to filter the log based on "Level" (Error or Information) or Event ID. Event IDs 10 and 11 are associated with certificate chain building. Event IDs 40 and 41 are associated with certificate revocation checking. 
+**Note:** Review the detailed logs to learn more about errors or validation issues.  It may be useful to filter the log based on "Level" (Error or Information) or Event ID. Event IDs 10 and 11 are associated with certificate chain building. Event IDs 40 and 41 are associated with certificate revocation checking. 
 
 #### Are there any useful commands that I should be familiar with?
 
@@ -185,7 +185,8 @@ The macOS ```verify-cert``` command is useful for detecting issues with certific
           security verify-cert -c [PATH-TO-CERTIFICATE] -v
      ```
 
-Note: Any issues detected during certificate validation will be presented in the command's output.
+<br>
+**Note:** Any issues detected during certificate validation will be presented in the command's output.
 
 <br><br>
 
@@ -196,7 +197,7 @@ Note: Any issues detected during certificate validation will be presented in the
 Even after distributing the Federal Common Policy CA G2 as a Trusted Root Certificate to an iOS device, TLS negotiation failures may appear when navigating to a website whose TLS certificate was issued by a Federal PKI CA.
 
 TLS certificate errors presented to the user in Safari are typically caused by either:
-1. "Full Trust" for the Federal Common Policy CA G2 is not enabled
+1. "Full Trust" for the Federal Common Policy CA G2 is not enabled; or
 2. An intermediate CA certificate is missing from the device's trust store
 
 **Recommended Steps**:
