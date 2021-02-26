@@ -54,12 +54,12 @@ The steps below should **only** be performed by System Administrators and requir
 ```openssl s_client -connect [FQDN].gov:443```
 
      For example, to test https://piv.treasury.gov, you would execute:<br><br>
-     ```openssl s_client -connect piv.treasury.gov:443```
+          ```openssl s_client -connect piv.treasury.gov:443```
      
 2. Review the output for a line that reads "Acceptable client certificate CA names."  This presents a listing of the certificates the website is willing to accept a certificate from for authentication. 
 
 3. Verify an entry exists for the Federal Common Policy CA G2.  This will appear as the following:<br><br>
-     ```/C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2```
+          ```/C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2```
      
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
@@ -79,8 +79,8 @@ These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our op
 
 2. Start -> Run -> cmd.exe
 
-3. Run the following command to open the CertUtil Graphical User Interface:<br>
-```certutil -URL "http://```
+3. Run the following command to open the CertUtil Graphical User Interface:<br><br>
+     ```certutil -URL "http://```
 
 4. Click "Select" and browse the file location of the certificate you'd like to analyze.
 
