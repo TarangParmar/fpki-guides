@@ -5,7 +5,7 @@ collection: common
 permalink: common/troubleshooting/
 ---
 
-{% include alert-success.html content="Common issues and troubleshooting procedures related to the Federal PKI Root CA migration are listed below.  If you need help or have any questions, email us at fpkirootupdate@gsa.gov for help." %} 
+{% include alert-success.html content="Common issues and troubleshooting procedures related to the Federal PKI Root CA migration are listed below.  If you need help or have any questions, email us at fpkirootupdate@gsa.gov." %} 
  
 ## Windows Troubleshooting
 - [How come my workstation isn't chaining to FCPCA G2?](#how-come-my-workstation-isnt-chaining-to-fcpca-g2)
