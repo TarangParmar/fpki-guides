@@ -59,6 +59,7 @@ The steps below should **only** be performed by System Administrators and requir
      ```
           openssl s_client -connect piv.treasury.gov:443
      ```
+     <br>
      
 2. Review the output for a line that reads "Acceptable client certificate CA names."  This presents a listing of the certificates the website is willing to accept a certificate from for authentication. 
 
@@ -66,7 +67,7 @@ The steps below should **only** be performed by System Administrators and requir
      ```
           /C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2
      ```
-     
+     <br>
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
 **Note:** the presence of the names of intermediate CA certificates issued from the Federal Common Policy CA G2 in the list of "Acceptable client certificate CA names" does not guarantee the right certificates have been added.  You may need to work with the website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added. 
@@ -91,7 +92,7 @@ These extensions contain Hypertext Transfer Protocol (HTTP) pointers that our op
      ```
           certutil -URL "http://"
      ```
-
+     <br>
 4. Click "Select" and browse the file location of the certificate you'd like to analyze.
 
 5. Select the "Certs (from AIA)" radio button and click "Retrieve."  Verify at least one entry returns a status of "Verified".
@@ -148,7 +149,7 @@ It's possible the application or website you are attempting to authenticate to h
 The steps below should **only** be performed by System Administrators and require [OpenSSL](https://www.openssl.org/){:target="_blank"}{:rel="noopener noreferrer"}.
 
 **Recommended Steps**:
-1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN):<br><br>
+1. Run the following OpenSSL command, replacing the placeholder below with the application or website's fully qualified domain name (FQDN):
      ```
           openssl s_client -connect [FQDN].gov:443
      ```
@@ -157,6 +158,7 @@ The steps below should **only** be performed by System Administrators and requir
      ```
           openssl s_client -connect piv.treasury.gov:443
      ```
+     <br>
      
 2. Review the output for a line that reads "Acceptable client certificate CA names."  This presents a listing of the certificates the website is willing to accept a certificate from for authentication. 
 
@@ -164,7 +166,7 @@ The steps below should **only** be performed by System Administrators and requir
      ```
           /C=US/O=U.S. Government/OU=FPKI/CN=Federal Common Policy CA G2
      ```
-     
+     <br>
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
 **Note:** the presence of the names of intermediate CA certificates issued from the Federal Common Policy CA G2 in the list of "Acceptable client certificate CA names" does not guarantee the right certificates have been added.  You may need to work with the website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added. 
