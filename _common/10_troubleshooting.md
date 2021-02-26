@@ -55,7 +55,7 @@ The steps below should **only** be performed by System Administrators and requir
           openssl s_client -connect [FQDN].gov:443
      ```
 
-     For example, to test https://piv.treasury.gov, you would execute:<br><br> 
+     <br>For example, to test https://piv.treasury.gov, you would execute:<br><br> 
      ```
           openssl s_client -connect piv.treasury.gov:443
      ```
@@ -153,7 +153,7 @@ The steps below should **only** be performed by System Administrators and requir
           openssl s_client -connect [FQDN].gov:443
      ```
 
-     For example, to test https://piv.treasury.gov, you would execute:<br><br> 
+     <br>For example, to test https://piv.treasury.gov, you would execute:<br><br> 
      ```
           openssl s_client -connect piv.treasury.gov:443
      ```
