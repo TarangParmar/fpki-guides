@@ -5,7 +5,7 @@ collection: common
 permalink: common/troubleshooting/
 ---
 
-{% include alert-success.html content="This page presents common issues and troubleshooting procedures related to the Federal PKI Root CA migration are listed below.  We encourage <b>only</b> Domain or System Administrators follow the procedures listed on this page.  If you need help or have any questions, email us at fpkirootupdate@gsa.gov." %} 
+{% include alert-success.html content="This page presents common issues and troubleshooting procedures related to the Federal PKI Root CA migration.  We encourage <b>only</b> Domain or System Administrators follow the procedures listed on this page.  If you need help or have any questions, email us at fpkirootupdate@gsa.gov." %} 
  
 ## Windows Troubleshooting
 - [How come my workstation isn't chaining to FCPCA G2?](#how-come-my-workstation-isnt-chaining-to-fcpca-g2)
@@ -38,13 +38,13 @@ In some cases, even after distributing the Federal Common Policy CA G2 as a Trus
 2. Verify the [distrust of the Federal Common Policy CA]({{site.baseurl}}/common/migrate/#distrust-the-fcpca-g1){:target="_blank"}
 3. Distribute the [intermediate CA certificates issued by the Federal Common Policy CA G2]({{site.baseurl}}/common/certificates/#certificates-issued-by-the-federal-common-policy-ca-g2){:target="_blank"}
 
-If you're still having problems, reach out to us at fpkirootupdate@gsa.gov.
+If you're still having problems, email us at fpkirootupdate@gsa.gov.
 
 
 
 #### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
 
-It's possible the application or website you are attempting to authenticate to has not yet distributed the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
+It's possible the application or website you are attempting to authenticate to does not yet trust the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
 
 The steps below should **only** be performed by System Administrators and require [OpenSSL](https://www.openssl.org/){:target="_blank"}{:rel="noopener noreferrer"}.
 
@@ -69,7 +69,7 @@ The steps below should **only** be performed by System Administrators and requir
      <br>
 4. Verify an entry exists for each CA certificate on the chain between the CA that issued your certificate and the Federal Common Policy CA G2.
 
-**Note:** the presence of the name of an intermediate CA certificate issued from the Federal Common Policy CA G2 in the list of "Acceptable client certificate CA names" does not guarantee the right certificate has been added to the application or website's trust store.  You may need to work with the application or website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added to the trust store. 
+**Note:** the presence of an intermediate CA certificate's name in the list of "Acceptable client certificate CA names" does not guarantee the right certificate has been added to the application or website's trust store.  You may need to work with the application or website administrator to verify the correct intermediate CA certificates issued from the Federal Common Policy CA G2 have been added to the trust store. 
 
 
 
