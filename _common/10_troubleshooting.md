@@ -44,7 +44,7 @@ If you're still having problems, email us at fpkirootupdate@gsa.gov.
 
 #### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
 
-It's possible the application or website you are attempting to authenticate to does not yet trust the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
+It's possible the application or website you are attempting to authenticate to does not yet trust the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors - typically observed with the application or website not prompting a user for their certificate during authentication attempts.
 
 The steps below should **only** be performed by System Administrators and require [OpenSSL](https://www.openssl.org/){:target="_blank"}{:rel="noopener noreferrer"}.
 
@@ -145,7 +145,7 @@ The most common cause of path building errors on macOS is due to the full certif
 
 #### How come I can't login to an application or website with my PIV after migrating to FCPCA G2?
 
-It's possible the application or website you are attempting to authenticate to has not yet distributed the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors.
+It's possible the application or website you are attempting to authenticate to has not yet distributed the Federal Common Policy CA G2 certificate or the new intermediate CA certificates issued by the Federal Common Policy CA G2.  Depending on how your system is configured, this may result in Transport Layer Security (TLS) client authentication errors - typically observed with the application or website not prompting a user for their certificate during authentication attempts.
 
 The steps below should **only** be performed by System Administrators and require [OpenSSL](https://www.openssl.org/){:target="_blank"}{:rel="noopener noreferrer"}.
 
@@ -201,7 +201,7 @@ TLS certificate errors presented to the user in Safari are typically caused by e
 2. An intermediate CA certificate is missing from the device's trust store
 
 **Recommended Steps**:
-1. Verify that ["Full Trust"](({{site.baseurl}}/common/distribute-os/#enable-full-trust-for-fcpca-g2)){:target="_blank_"} is enabled for the Federal Common Policy CA G2
+1. Verify that ["Full Trust"]({{site.baseurl}}/common/distribute-os/#enable-full-trust-for-fcpca-g2){:target="_blank_"} is enabled for the Federal Common Policy CA G2
 2. Verify that all required intermediate CA certificates are trusted by the device
      - Settings -> General -> Profile
      - Review the list of Configuration Profiles loaded on the device. Specifically, look at any profile which contains digital certificates. 
